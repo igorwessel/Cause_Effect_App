@@ -15,8 +15,12 @@ const main_element = document.querySelector('main')
 
 for (const person of people) {
     const li_element = document.createElement('li')
+    const link_element = document.createElement('a')
+    li_element.setAttribute('id', `${person.name.toLowerCase()}`)
+    link_element.href = `#${person.name.toLowerCase()}`
     const text_ul = document.createTextNode(person.name)
-    li_element.appendChild(text_ul)
+    link_element.appendChild(text_ul)
+    li_element.appendChild(link_element)
     ul_people.appendChild(li_element)
 }
 
@@ -26,17 +30,17 @@ const div = document.createElement('div')
 const aside = document.createElement('aside')
 const h1 = document.createElement('h1')
 const address = document.createElement('address')
+const details_element = document.querySelector('.details')
 
 aside.appendChild(h1)
 aside.appendChild(address)
-
-document.querySelector('.details').appendChild(aside)
-
+details_element.appendChild(aside)
 
 document.querySelectorAll('li').forEach((li) => {
     li.addEventListener('click', (event) => {
         for (const person of people) {
             if (person.name.toUpperCase() == li.innerText) {
+                details_element.style.setProperty('display', 'block')
                 ul_people.style.width = `${50}%`
                 h1.innerText = person.name
                 address.innerText = `Lives in: ${person.street}
