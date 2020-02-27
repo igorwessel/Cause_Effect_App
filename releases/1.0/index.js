@@ -5,7 +5,7 @@ const people = [
     { name: 'Angelo', street: 'Rua 25', city: 'Rio de Janeiro', state: 'RJ', country: 'Brasil', telephone: '30303030', birthday: '14/02/1995' },
     { name: 'Vanessa', street: 'Rua 4', city: 'Minas Gerais', state: 'MG', country: 'Brasil', telephone: '30303030', birthday: '14/02/1976' },
     { name: 'Erison', street: 'Rua Braz', city: 'Santos', state: 'SP', country: 'Brasil', telephone: '30303030', birthday: '14/05/1980' },
-    { name: 'Eduardo', street: 'Rua 23', city: 'Florianopolis', state: 'SC', country: 'Brasil', telephone: '30303030', birthday: '14/02/1988' },
+    { name: 'Euck', street: 'Rua 23', city: 'Florianopolis', state: 'SC', country: 'Brasil', telephone: '30303030', birthday: '14/02/1988' },
     { name: 'Ivana', street: 'Rua 20', city: 'Porto Alegre', state: 'RS', country: 'Brasil', telephone: '30303030', birthday: '14/02/1992' },
 ]
 
@@ -20,10 +20,32 @@ for (const person of people) {
     ul_people.appendChild(li_element)
 }
 
-main_element.appendChild(ul_people)
+// main_element.appendChild(ul_people)
+document.querySelector('.main').appendChild(ul_people)
+const div = document.createElement('div')
+const aside = document.createElement('aside')
+const h1 = document.createElement('h1')
+const address = document.createElement('address')
+
+aside.classList.add('details')
+aside.appendChild(h1)
+aside.appendChild(address)
+
+document.querySelector('.main').appendChild(aside)
+
 
 document.querySelectorAll('li').forEach((li) => {
     li.addEventListener('click', (event) => {
-
+        for (const person of people) {
+            if (person.name.toUpperCase() == li.innerText) {
+                h1.innerText = person.name
+                address.innerText = `Lives in: ${person.street}
+City: ${person.city}
+State: ${person.state}
+Country: ${person.country}
+Telephone: ${person.telephone}
+Birthday: ${person.birthday}`
+            }
+        }
     })
 })
